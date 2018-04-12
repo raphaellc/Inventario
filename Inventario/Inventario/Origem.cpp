@@ -10,7 +10,7 @@ int main() {
 	Personagem * prs = new Personagem;
 	Item * i = new Item;
 	Item * i2 = new Item;
-	Item i3;
+	Item * i3 = new Item;
 	enum Tipo { ARMA, VESTIMENTA, POCAO, ARTEFATO };
 	ofstream gravaItem("Inventario.bin", ios::binary | ios::out);
 	ifstream leItem;
@@ -35,6 +35,12 @@ int main() {
 	i2->tipo = VESTIMENTA;
 	i2->peso = 20;
 	prs->item_atual = *i2;
+	prs->inserirItemEm(gravaItem, 1);
+	//Cria o Item
+	i3->id = ids_itens++; //grava e atualiza item;
+	i3->tipo = POCAO;
+	i3->peso = 30;
+	prs->item_atual = *i3;
 	prs->inserirItemEm(gravaItem, 1);
 	gravaItem.close();
 	leItem.open("Inventario.bin", ios::binary | ios::in);
