@@ -8,6 +8,8 @@ using namespace std;
 int main() {
 	int ids_itens = 0;
 	Personagem * prs = new Personagem;
+
+	/*
 	Item * i = new Item;
 	Item * i2 = new Item;
 	Item * i3 = new Item;
@@ -53,8 +55,8 @@ int main() {
 	//leItem.seekg(pos);
 	/*leItem.read((char *)&i3, sizeof(Item));
 	cout << "Id: " << i3.id << "Peso: " << i3.peso << "Tipo: " << i3.tipo << endl;*/
-	prs->carregaItens(leItem);
-	leItem.close();
+	//prs->carregaItens(leItem);
+	//leItem.close();
 	system("pause");
 	return 0;
 }

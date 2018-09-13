@@ -4,6 +4,10 @@
 
 Personagem::Personagem()
 {
+	this->inventario = new Item[10];
+	this->id_persistencia = new ItemDaoStream;
+	this->inventario = this->id_persistencia->obtemTodosItens();
+	std::cout << this->inventario[1].id << std::endl;
 }
 
 
