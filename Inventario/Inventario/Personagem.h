@@ -11,6 +11,10 @@ public:
 	void inserirItem(std::ostream & os);
 	void inserirItemEm(std::ostream & os, int indice);
 	void carregaItens(std::istream & is);
+	int obtemQuantidadeItens();
+private:
+	int quantidade;
+
 		
 	
 	

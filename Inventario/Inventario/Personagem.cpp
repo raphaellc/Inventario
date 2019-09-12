@@ -4,6 +4,7 @@
 
 Personagem::Personagem()
 {
+	quantidade = 0;
 }
 
 
@@ -14,6 +15,7 @@ Personagem::~Personagem()
 void Personagem::inserirItem(std::ostream & os)
 {
 	os.write((char*)&item_atual, sizeof(Item));
+	quantidade++;
 }
 
 void Personagem::inserirItemEm(std::ostream & os, int indice)
@@ -22,6 +24,7 @@ void Personagem::inserirItemEm(std::ostream & os, int indice)
 	os.seekp(pos);
 	std::cout << "O item será escrito na posição: " << os.tellp() << std::endl;
 	os.write((char*)&item_atual, sizeof(Item));
+	quantidade++;
 }
 
 void Personagem::carregaItens(std::istream & is)
@@ -29,11 +32,16 @@ void Personagem::carregaItens(std::istream & is)
 	int indice = 0;
 	while(!is.eof()){
 		
-		is.read((char *)&inventario[indice], sizeof(Item));
-		if (is.gcount() == 0) break;
+		is.read(reinterpret_cast<char *>(&inventario[indice]), sizeof(Item));
+		/*if (is.gcount() == 0) break;
 		std::cout << "Id: " << inventario[indice].id << "Peso: " << inventario[indice].peso << "Tipo: " << inventario[indice].tipo << std::endl;
-		indice++;
+		indice++;*/
 		
 	}
+}
+
+int Personagem::obtemQuantidadeItens()
+{
+	return quantidade;
 }
 

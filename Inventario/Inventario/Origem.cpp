@@ -1,6 +1,5 @@
-#include "Personagem.h"
 #include "Item.h"
-#include <iostream>
+#include "Personagem.h"
 #include <fstream>
 #include <string>
 
@@ -21,8 +20,7 @@ int main() {
 	
 	//Atribui ao Personagem
 	prs->item_atual = *i;
-	
-	
+		
 	//Grava o Item
 	// - Testa se stream abriu Arquivo
 	if (!gravaItem.is_open()) {
@@ -41,7 +39,7 @@ int main() {
 	i3->tipo = POCAO;
 	i3->peso = 30;
 	prs->item_atual = *i3;
-	prs->inserirItemEm(gravaItem, 1);
+	prs->inserirItemEm(gravaItem, 2);
 	gravaItem.close();
 	leItem.open("Inventario.bin", ios::binary | ios::in);
 	if (!leItem.is_open()) {
@@ -54,6 +52,10 @@ int main() {
 	/*leItem.read((char *)&i3, sizeof(Item));
 	cout << "Id: " << i3.id << "Peso: " << i3.peso << "Tipo: " << i3.tipo << endl;*/
 	prs->carregaItens(leItem);
+	for(int j = 0; j < prs->obtemQuantidadeItens(); j++)
+	{
+		cout << "Id: " << prs->inventario[j].id << "Peso: " << prs->inventario[j].peso << "Tipo: " << prs->inventario[j].tipo << endl;
+	} 
 	leItem.close();
 	system("pause");
 	return 0;
