@@ -22,7 +22,7 @@ void Personagem::inserirItemEm(std::ostream & os, int indice)
 {
 	std::streampos pos(indice * sizeof(Item));
 	os.seekp(pos);
-	std::cout << "O item será escrito na posição: " << os.tellp() << std::endl;
+	std::cout << "O item serï¿½ escrito na posiï¿½ï¿½o: " << os.tellp() << std::endl;
 	os.write((char*)&item_atual, sizeof(Item));
 	quantidade++;
 }

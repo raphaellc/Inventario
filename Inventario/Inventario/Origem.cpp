@@ -7,6 +7,8 @@ using namespace std;
 int main() {
 	int ids_itens = 0;
 	Personagem * prs = new Personagem;
+
+	/*
 	Item * i = new Item;
 	Item * i2 = new Item;
 	Item * i3 = new Item;
