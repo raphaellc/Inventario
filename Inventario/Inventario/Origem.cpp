@@ -53,12 +53,12 @@ int main() {
 	//leItem.seekg(pos);
 	/*leItem.read((char *)&i3, sizeof(Item));
 	cout << "Id: " << i3.id << "Peso: " << i3.peso << "Tipo: " << i3.tipo << endl;*/
-	prs->carregaItens(leItem);
+	/*prs->carregaItens(leItem);
 	for(int j = 0; j < prs->obtemQuantidadeItens(); j++)
 	{
 		cout << "Id: " << prs->inventario[j].id << "Peso: " << prs->inventario[j].peso << "Tipo: " << prs->inventario[j].tipo << endl;
 	} 
-	leItem.close();
+	leItem.close();*/
 	system("pause");
 	return 0;
 }

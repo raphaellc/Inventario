@@ -115,17 +115,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Escudo.h" />
+    <ClInclude Include="Espada.h" />
+    <ClInclude Include="Inventario.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="ItemDao.h" />
-    <ClInclude Include="ItemDaoStream.h" />
     <ClInclude Include="Personagem.h" />
+    <ClInclude Include="Pocao.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Escudo.cpp" />
+    <ClCompile Include="Espada.cpp" />
+    <ClCompile Include="Inventario.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="ItemDao.cpp" />
-    <ClCompile Include="ItemDaoStream.cpp" />
     <ClCompile Include="Origem.cpp" />
     <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="Pocao.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
