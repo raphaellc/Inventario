@@ -16,6 +16,16 @@ Inventario::Inventario()
 	}
 }
 
+Inventario::Inventario(int tipo_persistencia)
+{
+	if(tipo_persistencia == 1){
+		i_item_dao = new ItemDAOImplBin();
+	}
+	else {
+		i_item_dao = new ItemDAOImplSeq();
+	}
+}
+
 
 Inventario::~Inventario()
 {
@@ -37,6 +47,7 @@ void Inventario::gravarItemEm(std::ostream & os, int indice)
 
 Item * Inventario::carregaItens(std::istream & is)
 {
+	inv = i_item_dao->obtemTodosItens();
 	Item * vetor = new Item[10];
 	int indice = 0;
 	while (!is.eof()){
