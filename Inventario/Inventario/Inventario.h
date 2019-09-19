@@ -1,5 +1,9 @@
 #pragma once
 #include "Item.h"
+#include "ItemDao.h"
+#include "ItemDaoBin.h"
+#include "ItemDaoSeq.h"
+
 
 class Inventario
 {
@@ -13,6 +17,8 @@ public:
 private:
 	Item * inventario;
 	int quantidade;
+	ItemDao * id_persistencia;
+
 	
 	
 	

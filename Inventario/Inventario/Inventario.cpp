@@ -10,7 +10,26 @@ Inventario::Inventario()
 
 Inventario::Inventario(int tipo_persistencia)
 {
+	if (tipo_persistencia) {
+		id_persistencia = new ItemDaoBin();
+	}
+	else {
+		id_persistencia = new ItemDaoSeq();
+	}
 	
+	this->inventario = id_persistencia->obtemTodosItens();
+	if (this->inventario == nullptr) {
+		this->inventario = new Item[10];
+		quantidade = 0;
+	}
+	else{
+	//Verifica Quantidade de Itens;
+		for (int i = 0; i < 10; i++) {
+			if (this->inventario[i].id > 0) {
+				quantidade++;
+			}
+		}
+	}
 }
 
 

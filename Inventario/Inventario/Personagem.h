@@ -10,7 +10,7 @@ public:
 	void coletaItem(Item * it);
 private:
 	int vida;
-	Inventario inventario;
+	Inventario * inventario;
 
 		
 	
