@@ -16,3 +16,8 @@ void Personagem::recuperarVida()
 {
 	this->vida = this->vida + this->inventario.pegarItem(POCAO).usar();
 }
+
+void Personagem::coletaItem(Item * it)
+{
+	inventario.adicionaItem(it);
+}
