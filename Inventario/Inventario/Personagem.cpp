@@ -14,7 +14,7 @@ Personagem::~Personagem()
 
 void Personagem::recuperarVida()
 {
-	this->vida = this->vida + this->inventario.pegarItem(POCAO).usar();
+	this->vida = this->vida + this->inventario.pegarItem(POCAO)->usar();
 }
 
 void Personagem::coletaItem(Item * it)

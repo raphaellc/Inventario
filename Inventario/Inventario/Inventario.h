@@ -8,7 +8,7 @@ public:
 	Inventario(int tipo_persistencia);
 	~Inventario();
 	int obtemQuantidadeItens();
-	Item pegarItem(int tipo_item);
+	Item * pegarItem(int tipo_item);
 	void adicionaItem(Item * it); //Adiciona item no vetor inventario
 private:
 	Item * inventario;

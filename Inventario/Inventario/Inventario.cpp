@@ -4,7 +4,8 @@
 
 Inventario::Inventario()
 {
-	
+	quantidade = 0;
+	this->inventario = new Item[10];
 }
 
 Inventario::Inventario(int tipo_persistencia)
@@ -24,21 +25,22 @@ int Inventario::obtemQuantidadeItens()
 	return quantidade;
 }
 
-Item Inventario::pegarItem(int tipo_item)
+Item * Inventario::pegarItem(int tipo_item)
 {
 	tipo_item = (TIPO_ITEM)tipo_item;
 	if (quantidade == 0)
-		return Item();
-	for (int i; i < quantidade; i++)
+		return nullptr;
+	for (int i=0; i < quantidade; i++)
 		if (tipo_item == inventario[i].tipo)
-			return inventario[i];
+			return &inventario[i];
+	return nullptr;
 }
 
 void Inventario::adicionaItem(Item * it)
 {
 	if (it != nullptr && quantidade < 10)
 	{
-		inventario[quantidade - 1] = * it;
+		inventario[quantidade] = * it;
 		quantidade++;
 	}
 }
