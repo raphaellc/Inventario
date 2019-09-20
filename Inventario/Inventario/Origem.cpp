@@ -29,7 +29,7 @@ int main() {
 	i3->tipo = ESPADA;
 	i3->peso = 30;
 	prs->coletaItem(i3);
-
+	prs->guardaItens();
 	// Salva Jogo
 	//Reinicializa Jogo com recursos salvos no arquivo.
 	

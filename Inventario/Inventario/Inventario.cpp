@@ -6,20 +6,24 @@ Inventario::Inventario()
 {
 	quantidade = 0;
 	this->inventario = new Item[10];
+	for (int i = 0; i < 10; i++)
+		this->inventario[i].id = -1;
 }
 
 Inventario::Inventario(int tipo_persistencia)
 {
 	if (tipo_persistencia) {
-		id_persistencia = new ItemDaoBin();
+		i_item_dao = new ItemDaoBin();
 	}
 	else {
-		id_persistencia = new ItemDaoSeq();
+		i_item_dao = new ItemDaoSeq();
 	}
 	
-	this->inventario = id_persistencia->obtemTodosItens();
+	this->inventario = i_item_dao->obtemTodosItens();
 	if (this->inventario == nullptr) {
 		this->inventario = new Item[10];
+		for (int i = 0; i < 10; i++)
+			this->inventario[i].id = -1;
 		quantidade = 0;
 	}
 	else{
@@ -62,4 +66,9 @@ void Inventario::adicionaItem(Item * it)
 		inventario[quantidade] = * it;
 		quantidade++;
 	}
+}
+
+void Inventario::salvaInventario()
+{
+	this->i_item_dao->guardaTodosItens(this->inventario);
 }

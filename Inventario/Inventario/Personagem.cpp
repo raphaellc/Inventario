@@ -22,3 +22,8 @@ void Personagem::coletaItem(Item * it)
 {
 	inventario->adicionaItem(it);
 }
+
+void Personagem::guardaItens()
+{
+	this->inventario->salvaInventario();
+}

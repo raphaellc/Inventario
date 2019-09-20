@@ -8,6 +8,7 @@ public:
 	
 	void recuperarVida();
 	void coletaItem(Item * it);
+	void guardaItens();
 private:
 	int vida;
 	Inventario * inventario;

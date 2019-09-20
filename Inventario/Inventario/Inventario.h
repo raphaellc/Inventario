@@ -14,10 +14,12 @@ public:
 	int obtemQuantidadeItens();
 	Item * pegarItem(int tipo_item);
 	void adicionaItem(Item * it); //Adiciona item no vetor inventario
+	void salvaInventario();
 private:
+	ItemDao * i_item_dao;
 	Item * inventario;
 	int quantidade;
-	ItemDao * id_persistencia;
+	
 
 	
 	
