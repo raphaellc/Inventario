@@ -13,6 +13,21 @@ ItemDaoBin::~ItemDaoBin()
 
 Item * ItemDaoBin::obtemTodosItens()
 {
+	std::ifstream i_persiste;
+	i_persiste.open("Inventario.bin", ios::binary | ios::in);
+	if (!i_persiste.is_open())
+	{
+		return nullptr;
+	}else
+	{
+		Item * itens = new Item[10];
+		int i = 0;
+		do{
+			i_persiste.read(reinterpret_cast<char *>(&itens[i]), sizeof(Item));
+			i++;
+			
+		} while (!i_persiste.eof());
+	}
 	return nullptr;
 }
 
