@@ -10,11 +10,12 @@ class Inventario
 public:
 	Inventario();
 	Inventario(int tipo_persistencia);
+	Inventario(ItemDao* item_dao);
 	~Inventario();
 	int obtemQuantidadeItens();
 	Item * pegarItem(int tipo_item);
 	void adicionaItem(Item * it); //Adiciona item no vetor inventario
-	void salvaInventario();
+	bool salvaInventario();
 private:
 	ItemDao * i_item_dao;
 	Item * inventario;

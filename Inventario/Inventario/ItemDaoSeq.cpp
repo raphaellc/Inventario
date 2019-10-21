@@ -1,5 +1,5 @@
 #include "ItemDaoSeq.h"
-
+#include <fstream>
 
 
 ItemDaoSeq::ItemDaoSeq()

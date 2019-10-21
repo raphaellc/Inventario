@@ -1,5 +1,5 @@
 ﻿#include "Inventario.h"
-#include <fstream>
+
 
 
 Inventario::Inventario()
@@ -31,6 +31,31 @@ Inventario::Inventario(int tipo_persistencia)
 		for (int i = 0; i < 10; i++) {
 			if (this->inventario[i].id > 0) {
 				quantidade++;
+			}
+		}
+	}
+}
+
+Inventario::Inventario(ItemDao* item_dao)
+{
+	if (item_dao == nullptr)
+		this->i_item_dao = item_dao;
+	
+	else {
+		this->i_item_dao = item_dao;
+		this->inventario = i_item_dao->obtemTodosItens();
+		if (this->inventario == nullptr) {
+			this->inventario = new Item[10];
+			for (int i = 0; i < 10; i++)
+				this->inventario[i].id = -1;
+			quantidade = 0;
+		}
+		else {
+			//Verifica Quantidade de Itens;
+			for (int i = 0; i < 10; i++) {
+				if (this->inventario[i].id > 0) {
+					quantidade++;
+				}
 			}
 		}
 	}
@@ -68,7 +93,7 @@ void Inventario::adicionaItem(Item * it)
 	}
 }
 
-void Inventario::salvaInventario()
+bool Inventario::salvaInventario()
 {
-	this->i_item_dao->guardaTodosItens(this->inventario);
+	return this->i_item_dao->guardaTodosItens(this->inventario);
 }

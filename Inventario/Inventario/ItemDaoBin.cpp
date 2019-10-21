@@ -1,5 +1,5 @@
 #include "ItemDaoBin.h"
-
+#include <fstream>
 using namespace std;
 
 ItemDaoBin::ItemDaoBin()
