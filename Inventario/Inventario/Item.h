@@ -10,6 +10,8 @@ public:
 	TIPO_ITEM tipo;
 	virtual int usar();
 	void definirTipo(TIPO_ITEM tp);
-
+	bool operator==(Item* it);
+	bool operator>(Item* it);
+	friend std::ostream& operator<<(std::ostream& os, const Item* obj);
 };
 

@@ -30,7 +30,12 @@ int main() {
 	i3->peso = 30;
 	prs->coletaItem(i3);
 	prs->guardaItens();
-
+	if (i2 == i3) std::cout << "iguais";
+	else std::cout << "diferentes";
+	std::cout << std::endl;
+	if (i2 == i2) std::cout << "iguais";
+	else std::cout << "diferentes";
+	std::cout << i2 << std::endl;
 	// Salva Jogo
 	//Reinicializa Jogo com recursos salvos no arquivo.
 	
