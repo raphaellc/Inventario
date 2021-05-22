@@ -16,6 +16,7 @@ public:
 	Item * pegarItem(int tipo_item);
 	void adicionaItem(Item * it); //Adiciona item no vetor inventario
 	bool salvaInventario();
+	void defineItemDao(ItemDao* item_dao);
 private:
 	ItemDao * i_item_dao;
 	Item * inventario;

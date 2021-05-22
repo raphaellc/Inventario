@@ -95,5 +95,12 @@ void Inventario::adicionaItem(Item * it)
 
 bool Inventario::salvaInventario()
 {
+	if (this->quantidade == 0) return false;
+	if (this->i_item_dao == nullptr) return false;
 	return this->i_item_dao->guardaTodosItens(this->inventario);
+}
+
+void Inventario::defineItemDao(ItemDao* item_dao)
+{
+	i_item_dao = item_dao;
 }

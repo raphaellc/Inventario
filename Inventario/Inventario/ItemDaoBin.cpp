@@ -33,6 +33,7 @@ Item * ItemDaoBin::obtemTodosItens()
 
 bool ItemDaoBin::guardaTodosItens(Item * it_itens)
 {
+	if (it_itens == nullptr) return false;
 	std::ofstream o_persiste("Inventario.bin", ios::binary | ios::out);
 	if (!o_persiste.is_open()) {
 		return false;
