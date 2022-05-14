@@ -17,10 +17,12 @@ public:
 	void adicionaItem(Item * it); //Adiciona item no vetor inventario
 	bool salvaInventario();
 	void defineItemDao(ItemDao* item_dao);
+	bool obtemEstado();
 private:
 	ItemDao * i_item_dao;
 	Item * inventario;
 	int quantidade;
+	bool salvo;
 	
 
 	

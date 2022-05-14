@@ -4,6 +4,7 @@
 
 Inventario::Inventario()
 {
+	salvo = false;
 	quantidade = 0;
 	this->inventario = new Item[10];
 	for (int i = 0; i < 10; i++)
@@ -12,6 +13,7 @@ Inventario::Inventario()
 
 Inventario::Inventario(int tipo_persistencia)
 {
+	salvo = false;
 	if (tipo_persistencia) {
 		i_item_dao = new ItemDaoBin();
 	}
@@ -38,9 +40,9 @@ Inventario::Inventario(int tipo_persistencia)
 
 Inventario::Inventario(ItemDao* item_dao)
 {
-	if (item_dao == nullptr)
+	salvo = false;
+	if (item_dao == nullptr) //grava nullptr;
 		this->i_item_dao = item_dao;
-	
 	else {
 		this->i_item_dao = item_dao;
 		this->inventario = i_item_dao->obtemTodosItens();
@@ -90,6 +92,7 @@ void Inventario::adicionaItem(Item * it)
 	{
 		inventario[quantidade] = * it;
 		quantidade++;
+		salvo = false;
 	}
 }
 
@@ -97,10 +100,19 @@ bool Inventario::salvaInventario()
 {
 	if (this->quantidade == 0) return false;
 	if (this->i_item_dao == nullptr) return false;
-	return this->i_item_dao->guardaTodosItens(this->inventario);
+	if (this->i_item_dao->guardaTodosItens(this->inventario)) {
+		salvo = true;
+		return true;
+	}
+	return false;
 }
 
 void Inventario::defineItemDao(ItemDao* item_dao)
 {
 	i_item_dao = item_dao;
+}
+
+bool Inventario::obtemEstado()
+{
+	return salvo;
 }

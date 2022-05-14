@@ -14,10 +14,6 @@ using ::testing::Return;
 using ::testing::Ne;
 
 
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
-}
 class MockItemDao : public ItemDao {
 	/*virtual Item* obtemTodosItens() = 0;
 	virtual bool guardaTodosItens(Item* it_itens) = 0;*/
@@ -26,8 +22,8 @@ public:
 	MOCK_METHOD(bool, guardaTodosItens, (Item* it_itens), (override));
 };
 
-TEST(TesteSemItemDao, testeGaurdaTodosItensRetornoFalsoSemMock) {
-	//Arrange
+TEST(TesteComUmItemEComItemDao, testeSalvaInventarioRetornoTrue) {
+	//Configura Dados
 	MockItemDao mid;
 	Item* it = new Item();
 	it->id = 1;
@@ -35,24 +31,52 @@ TEST(TesteSemItemDao, testeGaurdaTodosItensRetornoFalsoSemMock) {
 	Inventario * inv = new Inventario();
 	inv->defineItemDao(&mid);
 	inv->adicionaItem(it);
-	EXPECT_CALL(mid, guardaTodosItens(::testing::NotNull())).Times(::testing::Exactly(1)).WillRepeatedly(Return(true));
-	EXPECT_TRUE(inv->salvaInventario());
-	//ASSERT_EQ(false, inv->salvaInventario());
+	
+	//Configura expectativa
+	EXPECT_CALL(mid, guardaTodosItens(::testing::NotNull())).Times(::testing::AtLeast(1)).WillRepeatedly(Return(true));
+	
+	//Exercita a expectativa;
+	inv->salvaInventario();
+	
+	ASSERT_EQ(inv->obtemEstado(), true);
 	ASSERT_EQ(inv->obtemQuantidadeItens(), 1);
-	
-	
-	
 };
+TEST(TesteSalvaInventarioSemIDaoSemItem, TesteRetornoFalso) {
+	//Arrange
+	MockItemDao mid;
+	Inventario* inv = new Inventario();
+	//Configura Expectativa
+	EXPECT_CALL(mid, guardaTodosItens(::testing::NotNull())).Times(0);
+	//Act
+	bool salva = inv->salvaInventario();
+	//Assert
+	ASSERT_FALSE(salva);
+}
 
-TEST(TesteFalso, testeGaurdaTodosItensRetornoFalso) {
+TEST(TesteSalvaInventario, testeGaurdaTodosItensRetornoFalso) {
 	//Arrange
 	MockItemDao mid;
 	Inventario * inv = new Inventario(&mid);
-	EXPECT_CALL(mid, guardaTodosItens(Ne(nullptr))).Times(::testing::AtMost(2)).WillRepeatedly(Return(false));
-	//EXPECT_EQ(false, inv->salvaInventario());
-	EXPECT_EQ(false, inv->salvaInventario());
-	EXPECT_EQ(false, inv->salvaInventario());
-	ASSERT_EQ(inv->obtemQuantidadeItens(), 0);
-
-	
+	Item* it = new Item();
+	it->id = 1;
+	it->peso = 10;
+	inv->adicionaItem(it);
+	EXPECT_CALL(mid, guardaTodosItens(Ne(nullptr)))
+		.Times(::testing::AtLeast(1))
+		.WillOnce(Return(false));
+	inv->salvaInventario();
+	EXPECT_EQ(false, inv->obtemEstado());
+	//ASSERT_EQ(inv->obtemQuantidadeItens(), 0);
 };
+TEST(InstanciarInventario, ObtemItensArmazenados) {
+	//Arrange
+	MockItemDao mid;
+	int qtdItens = 0;
+	
+	//Configura Expectativa
+	EXPECT_CALL(mid, obtemTodosItens()).Times(::testing::AtLeast(1));
+	//Act
+	Inventario* inv = new Inventario(&mid);
+	//Assert
+	ASSERT_EQ(qtdItens, inv->obtemQuantidadeItens());
+}
