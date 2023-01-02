@@ -1,4 +1,6 @@
-# Inventario
+# Curso Tecnológico de Jogos Digitais - Unisinos 
+## Atividade Acadêmica de Orientação à Objetos
+### Sistema de Inventario
 Criar um sistema de inventário para personagens de um jogo.
 Permitir: inserção, remoção e consulta (por itens ou todos)
 Definir o número máximo de itens e o peso máximo a ser carregado.
